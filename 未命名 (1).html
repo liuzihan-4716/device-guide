@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>正向情绪引导训练系统使用教程</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", system-ui, sans-serif;
+        }
+        /* 全局渐变背景 */
+        body{
+            background: linear-gradient(135deg, #e0f7fa 0%, #f0f9ff 50%, #f0fdf4 100%);
+            padding: 20px 15px;
+            line-height: 1.7;
+        }
+        .container{
+            max-width: 680px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 25px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        }
+        /* 彩虹渐变标题 */
+        h1{
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #0ea5e9, #10b981, #8b5cf6);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        /* 通用图片样式 立体美化 */
+        .sys-img{
+            width: 75%;
+            margin: 15px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            border: 3px solid #fff;
+            transition: all 0.3s ease;
+        }
+        .sys-img:hover{
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .sys-img img{
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .img-tip{
+            font-size: 13px;
+            color: #64748b;
+            text-align: center;
+            margin: -10px 0 18px;
+            font-weight: 500;
+        }
+
+        /* 顶部红色渐变警示栏 */
+        .top-alert{
+            background: linear-gradient(135deg, #fef2f2, #fff7ed);
+            border: 1px solid #fca5a5;
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 22px;
+            color: #b91c1c;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(239,68,68,0.1);
+        }
+        .top-alert p{
+            margin: 10px 0;
+        }
+
+        /* 蓝色渐变提示栏 */
+        .tip{
+            background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+            border: 1px solid #93c5fd;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            color: #1e40af;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(59,130,246,0.1);
+        }
+
+        /* 折叠面板 分模块主题色 */
+        details{
+            margin: 16px 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        details:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+        summary{
+            padding: 18px 22px;
+            color: #fff;
+            cursor: pointer;
+            list-style: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-right: 45px;
+        }
+        summary::-webkit-details-marker{
+            display: none;
+        }
+        /* 自定义上下三角箭头 */
+        summary::after{
+            content: "▼";
+            position: absolute;
+            right: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 15px;
+            transition: transform 0.3s ease;
+        }
+        details[open] summary::after{
+            content: "▲";
+        }
+        /* 各步骤主题渐变 */
+        details:nth-of-type(1) summary{
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+        }
+        details:nth-of-type(2) summary{
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        details:nth-of-type(3) summary{
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+        details:nth-of-type(4) summary{
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        details:nth-of-type(5) summary{
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+        details[open] summary{
+            filter: brightness(0.95);
+        }
+        .content{
+            padding: 22px;
+            font-size: 15px;
+            color: #374151;
+            background: #fafbfc;
+        }
+        .content ul{
+            padding-left: 24px;
+            margin: 12px 0;
+        }
+        .content li{
+            margin: 10px 0;
+        }
+        .warn{
+            color: #dc2626;
+            font-weight: 600;
+        }
+        .content p b{
+            color: #7c3aed;
+            font-size: 17px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>正向情绪引导训练系统使用教程</h1>
+
+        <!-- 设备整体外观 -->
+        <div class="sys-img">
+            <img src="https://img.cdn1.vip/i/69ffce6584eb3_1778372197.webp" alt="设备整体外观">
+        </div>
+        <div class="img-tip">设备整体外观实拍</div>
+
+        <!-- 顶部前置须知 -->
+        <div class="top-alert">
+            ⚠️ 重要前置须知
+            <p>1.  进入躺椅<strong>必须脱鞋并穿戴脚套</strong></p>
+            <p>2. 请摘下手表、手环等配饰，防止按摩气囊挤压损坏；随身物品请妥善放置</p>
+        </div>
+
+        <div class="tip">⚠️ 设备需连接平板，仅限前台工作人员操作；端口链接为4 不是5！</div>
+
+        <!-- 第一步：打开电源，启动系统 -->
+        <details open>
+            <summary>第一步：打开电源，启动系统</summary>
+            <div class="content">
+                <ul>
+                    <li>1. 打开H3C设备电源，指示灯亮起（可能需要用力按）</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd1a02d994_1778373024.webp" alt="开机电源指示灯">
+                </div>
+                <div class="img-tip">开机电源指示灯说明</div>
+
+                <ul>
+                    <li>2. 打开按摩椅后下方开关，按摩椅侧边灯亮起</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd1b0cc75a_1778373040.webp" alt="按摩椅后侧电源开关">
+                </div>
+                <div class="img-tip">按摩椅后侧电源开关</div>
+
+                <ul>
+                    <li>3. 开启电源开关至打开状态</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd4878264c_1778373767.webp" alt="电源开关特写">
+                </div>
+                <div class="img-tip">电源开关特写</div>
+
+                <ul>
+                    <li>4. 开机平板，屏保密码：<b>123123</b></li>
+                    <li>5. 进入应用控制系统，账号：<b>admin</b>，密码：<b>admin</b></li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd1c18355a_1778373057.webp" alt="平板登录系统首页">
+                </div>
+                <div class="img-tip">平板登录系统首页界面</div>
+            </div>
+        </details>
+
+        <!-- 第二步：使用者坐姿与设备佩戴 -->
+        <details>
+            <summary>第二步：使用者坐姿与设备佩戴</summary>
+            <div class="content">
+                <ul>
+                    <li>1. 使用者脱鞋、佩戴脚套，平稳坐在按摩椅上</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd1f29d525_1778373106.webp" alt="放脚位置示意图">
+                </div>
+                <div class="img-tip">放脚位置示意图</div>
+
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd1cfa9646_1778373071.webp" alt="脚套实物存放">
+                </div>
+                <div class="img-tip">脚套实物存放位置</div>
+
+                <ul>
+                    <li>2. 佩戴脑电监测发带（存放于电脑柜中）</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd1ff3792e_1778373119.webp" alt="脑电生物训练仪包装盒">
+                </div>
+                <div class="img-tip">脑电生物训练仪包装盒</div>
+
+                <ul>
+                    <li>3. 整理额前头发、取下耳饰，发带紧贴额头，夹住左耳耳垂</li>
+                    <li>4. 主机模块扣在发带上，确保贴合无异物遮挡</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd2534fe19_1778373203.webp" alt="脑电发带佩戴示意图">
+                </div>
+                <div class="img-tip">脑电发带佩戴示意图</div>
+
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd2393b383_1778373177.webp" alt="发带电极扣实物">
+                </div>
+                <div class="img-tip">脑电采集发带电极扣实物</div>
+
+                <ul>
+                    <li>5. 长按发带开关，绿色灯光常亮即为开机</li>
+                    <li>6. 蓝牙接收器插入平板<b>左侧第一个Type-C接口</b></li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd3a546743_1778373541.webp" alt="蓝牙接收器实物">
+                </div>
+                <div class="img-tip">蓝牙接收器实物图</div>
+
+                <ul>
+                    <li>7. 平板右上角出现连接图标，代表配对成功</li>
+                    <li class="warn">注：连接器易损坏，可不佩戴发带，按摩椅功能可正常使用</li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- 第三步：系统七大功能使用 -->
+        <details>
+            <summary>第三步：系统七大功能使用</summary>
+            <div class="content">
+                <p><b>功能一：脑波音乐</b></p>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd3a16e73c_1778373537.webp" alt="首页脑波音乐模块界面">
+                </div>
+                <div class="img-tip">首页脑波音乐模块界面</div>
+                <p>选择各类脑波音乐，舒缓压力、释放焦虑、助眠减压；训练满4分钟可生成并导出训练报告。</p>
+                <br>
+
+                <p><b>功能二：脑波监测</b></p>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd3a5795dd_1778373541.webp" alt="脑波监测详情操作界面">
+                </div>
+                <div class="img-tip">脑波监测详情操作界面</div>
+                <p>佩戴好发带后点击开始监测，时长2分钟；自动采集8段脑波参数，生成专注度、放松度分析报告。</p>
+                <br>
+
+                <p><b>功能三：音乐调节</b></p>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd39c448b4_1778373532.webp" alt="音乐调节模块界面">
+                </div>
+                <div class="img-tip">音乐调节模块界面</div>
+                <p>自由选择内置音乐，开启沉浸式放松模式。</p>
+                <br>
+
+                <p><b>功能四：冥想放松</b></p>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd39256580_1778373522.webp" alt="冥想放松、助眠工具模块">
+                </div>
+                <div class="img-tip">首页冥想放松、助眠工具模块界面</div>
+                <p>包含：呼吸放松、肌肉放松、冥想放松、感谢自己、森林遨游、身体扫描等训练模式。</p>
+                <br>
+
+                <p><b>功能五：助眠工具</b></p>
+                <p>内置6款助眠动态场景，点击即可播放使用。</p>
+                <br>
+
+                <p><b>功能六：按摩（可与以上功能同时使用）</b></p>
+                <ul>
+                    <li>1. 确定按摩椅连接情况，点击左下角按摩椅图样图标</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd38be1b02_1778373515.webp" alt="系统首页左侧图标界面">
+                </div>
+                <div class="img-tip">系统首页左侧图标界面</div>
+
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd38b1e1c8_1778373515.webp" alt="按摩设备端口连接界面">
+                </div>
+                <div class="img-tip">按摩设备端口连接界面</div>
+
+                <ul>
+                    <li>2. 连接设备后选择匹配模式
+                        <ul>
+                            <li>智能匹配：使用其他功能时按摩同步启动，不可调整</li>
+                            <li>手动匹配：可个性化选择智能按摩、自由按摩、气囊按摩</li>
+                        </ul>
+                    </li>
+                    <li>3. 若想切换模式点击更换方式</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd38516b1d_1778373509.webp" alt="按摩椅模式切换提示界面">
+                </div>
+                <div class="img-tip">按摩椅模式切换提示界面</div>
+                <br>
+
+                <p><b>功能七：用户档案</b></p>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd48ab0f3f_1778373770.webp" alt="档案管理用户管理界面">
+                </div>
+                <div class="img-tip">底部档案管理、用户管理按钮界面</div>
+                <p>进入档案管理、用户管理，可查看所有用户训练记录、监测报告、基础信息。</p>
+            </div>
+        </details>
+
+        <!-- 第四步：关闭系统电源 -->
+        <details>
+            <summary>第四步：关闭系统及电源</summary>
+            <div class="content">
+                <ul>
+                    <li>1. 点击页面右上方开关，退出系统</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd48a5e88b_1778373770.webp" alt="首页右上角电源按钮">
+                </div>
+                <div class="img-tip">首页右上角电源按钮界面</div>
+
+                <ul>
+                    <li>2. 关闭平板设备</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd484d5db3_1778373764.webp" alt="电脑关机选项界面">
+                </div>
+                <div class="img-tip">设备关机选项界面</div>
+
+                <ul>
+                    <li>3. 关闭按摩椅后方电源开关</li>
+                    <li>4. 断开插座总电源，红灯熄灭即完全关机</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd4847c217_1778373764.webp" alt="断开插座总电源界面">
+                </div>
+                <div class="img-tip">断开插座总电源界面</div>
+            </div>
+        </details>
+
+        <!-- 其他注意事项 -->
+        <details>
+            <summary>其他注意事项</summary>
+            <div class="content">
+                <ul>
+                    <li>1. 使用者出现不适，立即点击复位按钮并做好情绪安抚</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd8412b721_1778374721.webp" alt="按摩椅复位按钮操作界面">
+                </div>
+                <div class="img-tip">按摩椅复位按钮操作界面</div>
+
+                <ul>
+                    <li>2. 平板需及时充电，充电头放置于旁边柜子</li>
+                </ul>
+                <div class="sys-img">
+                    <img src="https://img.cdn1.vip/i/69ffd483962ad_1778373763.webp" alt="电源适配器实物">
+                </div>
+                <div class="img-tip">设备电源适配器实物</div>
+
+                <ul>
+                    <li>3. 发带需与前额紧密接触，连接失败可擦拭发带贴片</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</body>
+</html>
